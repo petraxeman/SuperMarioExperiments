@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpbhgwon5y2mr"]
+
+[ext_resource type="Texture2D" uid="uid://dqdpkuo65wkr" path="res://sprites/player/mario_small.png" id="1_4qy3a"]
+[ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_wqo6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp5mu"]
+size = Vector2(10, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdk3q"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(116, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vp2v"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sroa1"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5h0g"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(20, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu1x7"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(38, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixbpi"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(56, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6usn"]
+atlas = ExtResource("1_4qy3a")
+region = Rect2(76, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tayq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdk3q")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vp2v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sroa1")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5h0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu1x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixbpi")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6usn")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["entity", "player"]]
+script = ExtResource("1_wqo6m")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_kp5mu")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tayq3")
+animation = &"stop"
+
+[node name="camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
